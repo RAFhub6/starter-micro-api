@@ -6,7 +6,7 @@ var app = http()
 app.get('/', async (req,res) => {
  // store something
 await s3.putObject({
-    Body: JSON.stringify({key:"value"}),
+    Body: JSON.stringify({key:"valuse"}),
     Bucket: "cyclic-gold-gentle-mackerel-ap-southeast-2",
     Key: "my_file.json",
 }).promise()
