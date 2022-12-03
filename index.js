@@ -16,4 +16,17 @@ res.send(my_file.Body)
  res.send("Error")
 }
 })
+app.post('/file/:file', async (req,res)=>{
+    try {
+        await s3.putObject({
+            Body: req.body['body'],
+            Bucket: "cyclic-gold-gentle-mackerel-ap-southeast-2",
+            Key: req.params['file'],
+        }).promise()
+
+    } catch(err){
+        res.send("Error")
+        console.log(err)
+    }
+})
 app.listen(process.env.PORT || 3000);
