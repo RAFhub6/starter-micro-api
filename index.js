@@ -23,7 +23,7 @@ app.post('/file/:file', async (req,res)=>{
             Bucket: "cyclic-gold-gentle-mackerel-ap-southeast-2",
             Key: req.params['file'],
         }).promise()
-
+        res.send("Done")
     } catch(err){
         res.send("Error")
         console.log(err)
