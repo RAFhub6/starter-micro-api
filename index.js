@@ -6,25 +6,19 @@ var app = http()
 app.use(http.json())
 app.get('/file/:file', async (req,res) => {
 try {
-    await s3.getObject({
+    // get it back
+let my_file = await s3.getObject({
     Bucket: "cyclic-gold-gentle-mackerel-ap-southeast-2",
     Key: req.params['file'],
-}, (err, data) =>{
-    if (err){
-        res.send("Error")
-        console.log(err)
-        return
-    }
-    res.type(data.ContentType)
-    res.send(data.Body)
 })
-
+res.setHeader('Content-Type', my_file.ContentType)
+res.send(my_file.Body)
 } catch(err) {
  console.log(err)
  res.send("Error")
 }
 })
-app.post('/file/:file', async (req,res)=>{
+app.post('/file/:file(*)', async (req,res)=>{
     var name = req.params['file']
     try {
         await s3.putObject({
