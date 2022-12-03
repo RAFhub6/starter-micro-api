@@ -15,7 +15,7 @@ try {
         console.log(err)
         return
     }
-    res.setHeader('Content-Type', data.ContentType)
+    res.type(data.ContentType)
     res.send(data.Body)
 })
 
