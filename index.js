@@ -4,7 +4,7 @@ var mime = require('mime-types')
 const s3 = new AWS.S3()
 var app = http()
 app.use(http.json())
-app.get('/file/:file', async (req,res) => {
+app.get('/file/get/:file', async (req,res) => {
 try {
     // get it back
 let my_file = await s3.getObject({
@@ -18,7 +18,7 @@ res.send(my_file.Body)
  res.send("Error")
 }
 })
-app.post('/file/:file(*)', async (req,res)=>{
+app.post('/file/new/:file(*)', async (req,res)=>{
     var name = req.params['file']
     try {
         await s3.putObject({
