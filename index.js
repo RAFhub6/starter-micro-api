@@ -11,6 +11,7 @@ let my_file = await s3.getObject({
     Bucket: "cyclic-gold-gentle-mackerel-ap-southeast-2",
     Key: req.params['file'],
 }).promise()
+res.writeHead(200, {"Content-Type": my_file.ContentType})
 res.send(my_file.Body)
 } catch(err) {
  console.log(err)
