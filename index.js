@@ -1,5 +1,6 @@
 var http = require('express');
 const AWS = require("aws-sdk");
+var mime = require('mime-types')
 const s3 = new AWS.S3()
 var app = http()
 app.use(http.json())
@@ -17,11 +18,13 @@ res.send(my_file.Body)
 }
 })
 app.post('/file/:file', async (req,res)=>{
+    var name = req.params['file']
     try {
         await s3.putObject({
             Body: req.body['body'],
             Bucket: "cyclic-gold-gentle-mackerel-ap-southeast-2",
-            Key: req.params['file'],
+            Key: name,
+            ContentType: mime.lookup(name.split('.')[name.split('.').length - 1])
         }).promise()
         res.send("Done")
     } catch(err){
