@@ -10,7 +10,7 @@ let my_file = await s3.getObject({
     Key: "my_file.json",
 }).promise()
 
-res.send(my_file)
+res.send(my_file.Body.data.toString())
 
 })
 app.listen(process.env.PORT || 3000);
