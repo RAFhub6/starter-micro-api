@@ -33,4 +33,10 @@ app.post('/file/:file', async (req,res)=>{
         console.log(err)
     }
 })
+app.delete('/file/:file', (req,res) => {
+    s3.deleteObject({Key: req.params['file'], Bucket: 'cyclic-gold-gentle-mackerel-ap-southeast-2'}, function(err, data) {
+        if (err) { res.send("Error"); console.log(err, err.stack); } // error
+        else     res.send("Done")              // deleted
+      });
+})
 app.listen(process.env.PORT || 3000);
