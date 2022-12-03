@@ -8,7 +8,7 @@ try {
     // get it back
 let my_file = await s3.getObject({
     Bucket: "cyclic-gold-gentle-mackerel-ap-southeast-2",
-    Key: req.params('file'),
+    Key: req.params['file'],
 }).promise()
 res.send(my_file.Body)
 } catch(err) {
