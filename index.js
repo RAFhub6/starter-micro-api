@@ -2,7 +2,7 @@ var http = require('express');
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3()
 var app = http()
-
+app.use(http.json())
 app.get('/file/:file', async (req,res) => {
 try {
     // get it back
