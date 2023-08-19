@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.2",
     "aws-sdk": "^2.1267.0",
     "mime-types": "^2.1.35"
   }
