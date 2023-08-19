@@ -6,7 +6,7 @@ var app = http()
 app.use(http.json())
 app.get('/file/:file', async (req,res) => {
 try {
-    // get it back
+    // do not get it back
 let my_file = await s3.getObject({
     Bucket: "cyclic-gold-gentle-mackerel-ap-southeast-2",
     Key: req.params['file'],
